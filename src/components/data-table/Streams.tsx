@@ -5,14 +5,13 @@
 
 import React, { useMemo } from "react";
 import _ from "lodash";
+import { Button, Flex, Table, Typography } from "antd";
 import { ColumnsType } from "antd/es/table";
-import { Table, Typography } from "antd";
 
 import QueryBoundary from "../widget/QueryBoundary";
 import useStreams from "../hooks/useStreams";
 import { Streams as IStreams } from "../../types/types";
-
-interface IProps {}
+import { exportToCSV, exportToExcel, exportToPDF } from "../utils/exportUtils";
 
 const getFilterSet = (key: string, data?: IStreams[]) => {
   return _.uniqBy(
@@ -80,9 +79,27 @@ const Streams: React.FC = () => {
   }, [data]);
 
   const title = () => (
-    <Typography.Title level={5} className="!mb-0">
-      Recent Streams
-    </Typography.Title>
+    <Flex
+      className="title-container"
+      wrap
+      justify="space-between"
+      align="center"
+    >
+      <Typography.Title level={5} className="!mb-0">
+        Recent Streams
+      </Typography.Title>
+      <Flex wrap gap={8}>
+        <Button onClick={() => exportToCSV(data, columns, "Streams")}>
+          Export to CSV
+        </Button>
+        <Button onClick={() => exportToExcel(data, columns, "Streams")}>
+          Export to Excel
+        </Button>
+        <Button onClick={() => exportToPDF(data, columns, "Streams")}>
+          Export to PDF
+        </Button>
+      </Flex>
+    </Flex>
   );
 
   return (

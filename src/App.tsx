@@ -4,25 +4,16 @@
  */
 
 import React, { Suspense, lazy } from "react";
-import { ConfigProvider } from "antd";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  DEFAULT_ICON_CONFIGS,
-  IconProvider,
-  IIconConfig,
-} from "@icon-park/react/lib/runtime";
+import { IconProvider } from "@icon-park/react/lib/runtime";
 
 import "./App.css";
 import FallBack from "./components/widget/FallBack";
+import ThemeProvider from "./components/theme/ThemeContext";
+import { IconConfig } from "./constants/config";
 import { makeServer } from "./mirageServer";
 
 makeServer();
-const IconConfig: IIconConfig = {
-  ...DEFAULT_ICON_CONFIGS,
-  size: 16,
-  theme: "outline",
-  prefix: "anticon i",
-};
 
 const Dashboard = lazy(() =>
   import("./components/dashboard/Dashboard").catch((error) => {
@@ -35,21 +26,15 @@ const App: React.FC = () => {
   const queryClient = new QueryClient();
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <ConfigProvider
-        theme={{
-          token: {
-            colorPrimary: "#dc9d29",
-          },
-        }}
-      >
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
         <IconProvider value={IconConfig}>
           <Suspense fallback={<FallBack />}>
             <Dashboard />
           </Suspense>
         </IconProvider>
-      </ConfigProvider>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 };
 

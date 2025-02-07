@@ -1,4 +1,41 @@
+.toggle-switch .ant-switch-inner-checked,
+.toggle-switch .ant-switch-inner-unchecked {
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
 .card-shadow:not(:hover) {
   box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.06),
     0 2px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px 2px rgba(0, 0, 0, 0.03) !important;
+}
+
+.card-shadow-dark {
+  box-shadow: 0 1px 3px rgba(209, 198, 198, 0.732),
+    0 1px 2px rgba(209, 198, 198, 0.732) !important;
+}
+
+.card-shadow-dark:hover {
+  box-shadow: 0 1px 4px rgb(252, 252, 252), 0 2px 8px rgb(252, 252, 252) !important;
+}
+
+.dark .ant-tooltip-inner,
+.dark .ant-dropdown-menu-item-selected span {
+  color: #000 !important;
+}
+
+.dark .ant-table {
+  border: 1px solid;
+  border-bottom: none;
+}
+
+.dark .ant-table-title {
+  border-bottom: 1px solid;
+}
+
+@media screen and (max-width: 576px) {
+  .title-container {
+    flex-direction: column;
+    gap: 8px;
+  }
 }

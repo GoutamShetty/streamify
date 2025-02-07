@@ -15,7 +15,7 @@ import UserGrowth from "../data-visualization/UserGrowth";
 
 const Dashboard: React.FC = () => {
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
+    <div className="p-6 bg-gradient-to-br from-white to-[#f7e6b5] dark:bg-gradient-to-br dark:from-[#4a3b1a] dark:to-[#dc9d29] min-h-screen transition-colors">
       <Title />
       <Row gutter={[16, 16]}>
         <Col xs={24} sm={24} xl={12}>

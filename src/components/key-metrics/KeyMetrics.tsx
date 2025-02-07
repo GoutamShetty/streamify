@@ -6,46 +6,15 @@
 import React from "react";
 import _ from "lodash";
 import { Card, Col, Row, Statistic } from "antd";
-import { Dollar, People, PeopleDownload, Play } from "@icon-park/react";
 
 import QueryBoundary from "../widget/QueryBoundary";
 import useMetrics from "../hooks/useMetrics";
-
-const metricConfig = {
-  totalUsers: {
-    label: "Total Users",
-    key: "totalUsers",
-    color: "#1890ff",
-    prefix: <People />,
-  },
-  activeUsers: {
-    label: "Active Users",
-    key: "activeUsers",
-    color: "#3f8600",
-    prefix: <PeopleDownload />,
-  },
-  totalStreams: {
-    label: "Total Streams",
-    key: "totalStreams",
-    color: "#722ed1",
-    prefix: <Play />,
-  },
-  revenue: {
-    label: "Revenue",
-    key: "revenue",
-    color: "#389e0d",
-    prefix: <Dollar />,
-  },
-  topArtist: {
-    label: "Top Artist",
-    key: "topArtist.name",
-    color: "#faad14",
-    prefix: "topArtist.imgUrl",
-  },
-};
+import { metricConfig } from "../../constants/config";
+import { useTheme } from "../theme/ThemeContext";
 
 const KeyMetrics: React.FC = () => {
   const metrics = useMetrics();
+  const { isDarkMode } = useTheme();
 
   return (
     <Card title="Key Metrics">
@@ -58,7 +27,7 @@ const KeyMetrics: React.FC = () => {
                 <Card
                   bordered={false}
                   size="small"
-                  className="card-shadow"
+                  className={isDarkMode ? "card-shadow-dark" : "card-shadow"}
                   hoverable
                 >
                   <Statistic
